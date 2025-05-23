@@ -1,11 +1,9 @@
 #include "Node/Node.hpp"
+#include "DistanceMatrix/DistanceMatrix.hpp"
 
 int main() {
-    int x = 0;
-    int y = 0;
-
-    Node node = Node(x, y);
-    node.Coordinates();
+    DistanceMatrix distMatrix = DistanceMatrix();
+    distMatrix.print();
 
     return 0;
 }

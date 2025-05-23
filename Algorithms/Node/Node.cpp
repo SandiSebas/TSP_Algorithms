@@ -15,3 +15,11 @@ Node::Node(int x, int y) {
 void Node::Coordinates() {
     cout << "(" << this->x << ", " << this->y << ")" << endl; 
 }
+
+int Node::getX() {
+    return this->x;
+}
+
+int Node::getY() {
+    return this->y;
+}
