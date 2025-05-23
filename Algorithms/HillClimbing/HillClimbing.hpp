@@ -14,7 +14,7 @@ class HillClimbing {
     public:
         HillClimbing();
 
-        void solve(int iterMax, DistanceMatrix& distMatrix);
+        void solve(DistanceMatrix& distMatrix);
         void print() const;
 };
 

@@ -27,7 +27,7 @@ std::vector<std::vector<int>> HillClimbing::getNeighbor(std::vector<int>& curren
    return neighbors;
 }
 
-void HillClimbing::solve(int iterMax, DistanceMatrix& distMatrix) {
+void HillClimbing::solve(DistanceMatrix& distMatrix) {
     int n = distMatrix.size();
     std::vector<int> currentTour(n);
     std::iota(currentTour.begin(), currentTour.end(), 0);
