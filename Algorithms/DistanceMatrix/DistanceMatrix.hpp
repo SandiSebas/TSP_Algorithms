@@ -6,7 +6,7 @@
 #include <cmath>
 #include <cstdlib>
 
-constexpr int n = 25;
+constexpr int n = 150;
 constexpr int seed = 19;
 
 class DistanceMatrix {
@@ -21,6 +21,8 @@ class DistanceMatrix {
     public:
         DistanceMatrix();
         void print() const;
+        int tourDistance(const std::vector<int>& tour);
+        int size();
 };
 
 #endif

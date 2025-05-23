@@ -37,3 +37,20 @@ void DistanceMatrix::print() const {
         std::cout << std::endl;
     }
 }
+
+int DistanceMatrix::tourDistance(const std::vector<int>& tour) {
+    int cost = 0;
+    int size = tour.size();
+
+    for(int i = 0; i < size; ++i) {
+        int from = tour[i];
+        int to = tour[(i + 1) % size];
+        cost += this->distMatrix[from][to];
+    }
+
+    return cost;
+}
+
+int DistanceMatrix::size() {
+    return n;
+}
