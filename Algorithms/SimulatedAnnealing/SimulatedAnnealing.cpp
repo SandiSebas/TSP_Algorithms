@@ -13,7 +13,7 @@ std::vector<int> SimulatedAnnealing::getNeighbor(const std::vector<int>& tour) c
     return neighbor;
 }
 
-void SimulatedAnnealing::solve(double temp, double coolingRate, int iterMax, DistanceMatrix& distMatrix) {
+void SimulatedAnnealing::solve(double temp, double coolingRate, int L, DistanceMatrix& distMatrix) {
     int n = distMatrix.size();
     std::vector<int> currentTour(n);
     std::iota(currentTour.begin(), currentTour.end(), 0);
@@ -22,21 +22,22 @@ void SimulatedAnnealing::solve(double temp, double coolingRate, int iterMax, Dis
     minCost = currentCost;
     bestTour = currentTour;
 
-    for(int i = 0; i < iterMax && temp > 1e-8; ++i) {
-        std::vector<int> neighbor = getNeighbor(currentTour);
-        int neighborCost = distMatrix.tourDistance(neighbor);
-        int delta = neighborCost - currentCost;
-
-        if (delta < 0 || std::exp(-delta / temp) > (rand() / (double)RAND_MAX)) {
-            currentTour = neighbor;
-            currentCost = neighborCost;
+    while(temp > 1e-5) {
+        for(int i = 0; i < L; ++i) {
+            std::vector<int> neighbor = getNeighbor(currentTour);
+            int neighborCost = distMatrix.tourDistance(neighbor);
+            int delta = neighborCost - currentCost;
+    
+            if (delta < 0 || std::exp(-delta / temp) > (rand() / (double)RAND_MAX)) {
+                currentTour = neighbor;
+                currentCost = neighborCost;
+            }
+    
+            if (currentCost < minCost) {
+                bestTour = currentTour;
+                minCost = currentCost;
+            }
         }
-
-        if (currentCost < minCost) {
-            bestTour = currentTour;
-            minCost = currentCost;
-        }
-
         temp *= coolingRate;
     }
 }
