@@ -9,17 +9,21 @@ class GeneticAlgorithm {
         int populationSize;
         int generations;
         double mutations;
+        double crossovers;
         std::vector<int> bestTour;
         int minCost;
 
         std::vector<std::vector<int>> initializePopulation(int n) const;
-        std::pair<std::vector<int>, std::vector<int>> selectParent(const std::vector<std::vector<int>>& population,
-            DistanceMatrix& distMatrix) const;
-        std::vector<int> crossover(const std::vector<int>& parent1, const std::vector<int>& parent2) const;
-        void mutate(std::vector<int>& tour) const;
+        std::vector<double> fitnessProb(std::vector<std::vector<int>>& population,
+            DistanceMatrix& distMatrix);
+        std::vector<int> rouletteWheele(std::vector<std::vector<int>>& population,
+            std::vector<double>& fitnessProb);
+        std::pair<std::vector<int>, std::vector<int>>crossover(const std::vector<int>& parent1,
+            const std::vector<int>& parent2) const;
+        void mutate(std::vector<int>& child) const;
 
     public:
-    GeneticAlgorithm(int popSize = 100, int gens = 500, double mutationRate = 0.02);
+    GeneticAlgorithm(int popSize = 250, int gens = 600, double mutationRate = 0.1, double crossovers = 0.8);
     void solve(DistanceMatrix& distMatrix);
     void print() const;
 };

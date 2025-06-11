@@ -6,7 +6,7 @@
 #include <cmath>
 #include <cstdlib>
 
-constexpr int n = 200;
+constexpr int n = 250;
 constexpr int seed = 19;
 
 class DistanceMatrix {

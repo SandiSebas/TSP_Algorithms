@@ -7,23 +7,14 @@ HillClimbing::HillClimbing() : minCost(INT_MAX) {
 std::vector<std::vector<int>> HillClimbing::getNeighbor(std::vector<int>& currentTour) const {
     std::vector<std::vector<int>> neighbors;
     int i = currentTour.size();
-    for (int i = 0; i < n; ++i) {
-        for (int j = i + 1; j < n; ++j) {
-            std::vector<int> neighbor = currentTour;
-            std::swap(neighbor[i], neighbor[j]);
-            neighbors.push_back(neighbor);
-        }
+    for (int k = 0; k < n; ++k) {
+        int i = rand() % currentTour.size();
+        int j = rand() % currentTour.size();
+
+        std::vector<int> neighbor = currentTour;
+        std::swap(neighbor[i], neighbor[j]);
+        neighbors.push_back(neighbor);
     }
-    /*
-    std::vector<int> neighbor = currentTour;
-    int i = rand() % neighbor.size();
-    int j = 0;
-    do {
-        j = rand() % neighbor.size();
-    } while(i == j);
-    std::swap(neighbor[i], neighbor[j]);
-    return neighbor;
-    */
    return neighbors;
 }
 

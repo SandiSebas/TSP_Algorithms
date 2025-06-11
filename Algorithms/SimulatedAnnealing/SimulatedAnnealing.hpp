@@ -14,7 +14,7 @@ class SimulatedAnnealing {
 
     public:
         SimulatedAnnealing();
-        void solve(double temp, double coolingRate, int L, DistanceMatrix& distMatrix);
+        void solve(double temp, double coolingRate, DistanceMatrix& distMatrix);
         void print() const;
 };
 
