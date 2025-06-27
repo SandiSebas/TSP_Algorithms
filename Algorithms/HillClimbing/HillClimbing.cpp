@@ -1,7 +1,7 @@
 #include "HillClimbing.hpp"
 
 HillClimbing::HillClimbing() : minCost(INT_MAX) {
-    std::srand(seed);
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 }
 
 std::vector<std::vector<int>> HillClimbing::getNeighbor(std::vector<int>& currentTour) const {

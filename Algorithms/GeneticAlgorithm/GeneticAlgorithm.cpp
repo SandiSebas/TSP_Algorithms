@@ -7,8 +7,7 @@ GeneticAlgorithm::GeneticAlgorithm(int popSize, int gens, double mutationRate, d
     : populationSize(popSize), generations(gens), mutations(mutationRate), minCost(INT_MAX), crossovers(crossovers) {}
 
 std::vector<std::vector<int>> GeneticAlgorithm::initializePopulation(int n) const {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(seed);
     std::vector<std::vector<int>> population;
     std::uniform_int_distribution<int> distribution(0, n - 1);
     std::vector<int> baseTour(n);
@@ -60,8 +59,7 @@ std::vector<int> GeneticAlgorithm::rouletteWheele(std::vector<std::vector<int>>&
         currentSum += fitnessProb[i];
         cumulativeProbs.push_back(currentSum);
     }
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(seed);
     std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
     double r = distribution(gen);
@@ -78,8 +76,7 @@ std::pair<std::vector<int>, std::vector<int>> GeneticAlgorithm::crossover(const 
     const std::vector<int>& parent2) 
 const {
     int n = parent1.size();
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(seed);
     std::uniform_int_distribution<int> distribution(0, n - 1);
 
     std::vector<int> child1(n, -1);
@@ -114,8 +111,7 @@ const {
 }
 
 void GeneticAlgorithm::mutate(std::vector<int>& child) const {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(seed);
     std::uniform_real_distribution<double> distribution(0.0, 1.0);
 
     std::uniform_int_distribution<int> distribution2(0, child.size() - 1);
@@ -128,8 +124,7 @@ void GeneticAlgorithm::mutate(std::vector<int>& child) const {
 }
 
 void GeneticAlgorithm::solve(DistanceMatrix& distMatrix) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(seed);
     std::uniform_real_distribution<double> dist(0.0, 1.0);
     int n = distMatrix.size();
     std::uniform_int_distribution<int> indexDis(0, populationSize - 1);
